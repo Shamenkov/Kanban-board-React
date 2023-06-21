@@ -1,0 +1,100 @@
+.taskBlock{
+    display: flex;
+    flex-direction: column;
+    background: #EBECF0;
+    border-radius: 10px;
+    width: 282px;
+    height: fit-content;
+    margin: 20px 12px 0px 12px;
+    padding-left: 12px;
+    flex: 1;
+
+}
+
+@media screen and (max-width:600px) {
+    .taskBlock{
+        display: flex;
+        flex-direction: column;
+        background: #EBECF0;
+        border-radius: 10px;
+        width: 282px;
+        height: 200px;
+        margin: 20px 12px 0px 12px;
+        padding-left: 12px;
+        flex: 1;        
+    }
+}
+
+.AddTaskButton.active{
+    width: 95%;
+    display: flex;
+    align-items: start;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #5E6C84;
+    margin-bottom: 8px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.AddTaskButton.active span{
+    margin-left: 10px;
+}
+
+.AddTaskButton:disabled{
+    background-color:#DEDEDE;
+    cursor: no-drop;
+}
+
+.AddTaskButton.active svg{
+    margin-top: 3px;
+    margin-right: 4px;
+}
+
+.AddTaskButton{
+    display: none;
+}
+
+.SubmitTaskButton.active{
+    margin: 12px 0px 7px 0px;
+    display: block;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    background: #0079BF;
+    border-radius: 5px;
+    border: none;
+    width: 102px;
+    height: 29px;
+}
+
+.SubmitTaskButton{
+    display: none;
+}
+
+.taskInput{
+    display: none;
+}
+
+.taskInput.active{
+    display: block;
+    width: 95%;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    outline:none;
+}
+
+@media screen and (max-width:600px) {
+    .taskBlock_title{
+        font-size: 18px;
+    }
+}
