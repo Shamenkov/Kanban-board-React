@@ -20,13 +20,21 @@ function HomePage(){
   
     const [inputValue, setInputValue] = useState('')
       
-    const [BacklogItemList, setItemList] = useState(JSON.parse(localStorage.getItem('BacklogItemList')))
+    const [BacklogItemList, setItemList] = useState(() => {
+      return JSON.parse(localStorage.getItem('BacklogItemList')) || []
+    })
   
-    const [ReadyItemList, setReadyItemList] = useState(JSON.parse(localStorage.getItem('ReadyItemList')))
+    const [ReadyItemList, setReadyItemList] = useState(() => {
+      return JSON.parse(localStorage.getItem('ReadyItemList')) || []
+    })
   
-    const [InProgresItemList, setInProgresItemList] = useState(JSON.parse(localStorage.getItem('InProgresItemList')))
+    const [InProgresItemList, setInProgresItemList] = useState(() => {
+      return JSON.parse(localStorage.getItem('InProgresItemList')) || []
+    })
   
-    const [FinishedItemList, setFinishedItemList] = useState(JSON.parse(localStorage.getItem('FinishedItemList')))
+    const [FinishedItemList, setFinishedItemList] = useState(() => {
+      return JSON.parse(localStorage.getItem('FinishedItemList')) || []
+    })
 
     const [ActiveTaskCount, setActiveTaskCount] = useState(Number(BacklogItemList.length))
     
@@ -34,8 +42,8 @@ function HomePage(){
   
    //UseEffect`s
   
-  //  const ActiveTaskCount = Number(BacklogItemList.length)
-  //   const FinishedTaskCount = Number(FinishedItemList.length)
+   
+
 
   useEffect(() =>{
     localStorage.setItem('ActiveTaskCount', ActiveTaskCount)
@@ -70,7 +78,9 @@ function HomePage(){
     useEffect(() =>{
       localStorage.setItem('FinishedItemList', JSON.stringify(FinishedItemList))
     },[FinishedItemList])
-  
+
+
+    
     //FUNCTION`S  
         
           //READY function
