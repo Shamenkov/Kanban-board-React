@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import './App.css';
-import Button from './components/button/button';
 import Header from './components/header/header';
 import HomePage from './components/HomePage/HomePage';
 import LinkPage from './components/LinkPage/LinkPage';
 import TaskBlock from './components/TaskBlock/TaskBlock';
 
-function App() { 
+function App() {
+
   return(
     <div className="App">
       <Header />

@@ -40,10 +40,7 @@ function HomePage(){
     
     const [FinishedTaskCount, setFinishedTaskCount] = useState(Number(FinishedItemList.length))
   
-   //UseEffect`s
-  
-   
-
+  //UseEffect`s
 
   useEffect(() =>{
     localStorage.setItem('ActiveTaskCount', ActiveTaskCount)
@@ -53,7 +50,7 @@ function HomePage(){
     localStorage.setItem('FinishedTaskCount', FinishedTaskCount)
   }, [FinishedTaskCount])
 
-   useEffect(() =>{
+  useEffect(() =>{
       if(BacklogItemList.length === 0){
         setButtonDisabled(true)
         setIsEmpty(true)
@@ -61,19 +58,19 @@ function HomePage(){
         setButtonDisabled(false)
         setIsEmpty(false)
       }
-   }, [BacklogItemList])
+  }, [BacklogItemList])
   
-    useEffect(() =>{
+  useEffect(() =>{
       localStorage.setItem('BacklogItemList', JSON.stringify(BacklogItemList))
-    },[BacklogItemList])
+  },[BacklogItemList])
   
-    useEffect(() =>{
+  useEffect(() =>{
       localStorage.setItem('ReadyItemList', JSON.stringify(ReadyItemList))
-    },[ReadyItemList])
+  },[ReadyItemList])
   
-    useEffect(() =>{
+  useEffect(() =>{
       localStorage.setItem('InProgresItemList', JSON.stringify(InProgresItemList))
-    },[InProgresItemList])
+  },[InProgresItemList])
   
     useEffect(() =>{
       localStorage.setItem('FinishedItemList', JSON.stringify(FinishedItemList))
@@ -165,26 +162,21 @@ function HomePage(){
   
     function onClickSaveValue () {
       if(inputValue !== ''){
-        setActiveTaskCount(Number(BacklogItemList.length))
         setItemList([ ...BacklogItemList, {
           title: inputValue,
           id: Date.now(),
           itemState: 'BackLog',
           description: 'This task has no description'
          }])
+         setActiveTaskCount(Number(BacklogItemList.length))
       }else{}
       setInputValue('')
       setAddButtonActive(true)
       setInputActive(false)
       setSubmitButtonActive(false)
-  
     }
   
-  
-    
-  
-    
-  
+
     //RETURN
   
     return (
