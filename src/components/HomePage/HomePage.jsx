@@ -5,8 +5,10 @@ import TaskBlock from '../TaskBlock/TaskBlock';
 import TaskBlock2 from '../taskBlock2';
 
 
-function HomePage(){
-    //UseState`s    
+function HomePage({ActiveTaskCount, setActiveTaskCount, FinishedTaskCount, setFinishedTaskCount}){
+    
+    
+  //UseState`s    
     const [isEmpty, setIsEmpty] = useState(false)
     const[addButtonDisabled, setButtonDisabled] = useState(false)
   
@@ -36,29 +38,46 @@ function HomePage(){
       return JSON.parse(localStorage.getItem('FinishedItemList')) || []
     })
 
-    const [ActiveTaskCount, setActiveTaskCount] = useState(Number(BacklogItemList.length))
-    
-    const [FinishedTaskCount, setFinishedTaskCount] = useState(Number(FinishedItemList.length))
-  
-  //UseEffect`s
+  //useEffect`s 
+//   useEffect(() =>{
+//     if(BacklogItemList.length === 0){
+//       setButtonDisabled(true)
+//       setIsEmpty(true)
+//     }else{
+//       setButtonDisabled(false)
+//       setIsEmpty(false)
+//     }
+//   }, [BacklogItemList])
 
-  useEffect(() =>{
-    localStorage.setItem('ActiveTaskCount', ActiveTaskCount)
-  }, [ActiveTaskCount])
+//   useEffect(() =>{
+//     if(ReadyItemList.length === 0){
+//       setButtonDisabled(true)
+//       setIsEmpty(true)
+//     }else{
+//       setButtonDisabled(false)
+//       setIsEmpty(false)
+//     }
+//   }, [ReadyItemList])
 
-  useEffect(() =>{
-    localStorage.setItem('FinishedTaskCount', FinishedTaskCount)
-  }, [FinishedTaskCount])
+//   useEffect(() =>{
+//     if(InProgresItemList.length === 0){
+//       setButtonDisabled(true)
+//       setIsEmpty(true)
+//     }else{
+//       setButtonDisabled(false)
+//       setIsEmpty(false)
+//     }
+//   }, [InProgresItemList])
 
-  useEffect(() =>{
-      if(BacklogItemList.length === 0){
-        setButtonDisabled(true)
-        setIsEmpty(true)
-      }else{
-        setButtonDisabled(false)
-        setIsEmpty(false)
-      }
-  }, [BacklogItemList])
+//   useEffect(() =>{
+//     if(FinishedItemList.length === 0){
+//       setButtonDisabled(true)
+//       setIsEmpty(true)
+//     }else{
+//       setButtonDisabled(false)
+//       setIsEmpty(false)
+//     }
+// }, [FinishedItemList])
   
   useEffect(() =>{
       localStorage.setItem('BacklogItemList', JSON.stringify(BacklogItemList))
@@ -88,8 +107,11 @@ function HomePage(){
       let newItem = NewArr[0]
       setReadyItemList([...ReadyItemList, newItem])
       setItemList(BacklogItemList)
+      localStorage.setItem('BacklogItemList', JSON.stringify(BacklogItemList))
       setOpen(false)
       setAddButtonActive(true)
+      setActiveTaskCount(Number(ActiveTaskCount - 1))
+      localStorage.setItem('ActiveTaskCount', ActiveTaskCount)
     }
   
         //INPROGRES function
@@ -100,6 +122,7 @@ function HomePage(){
       let newItem = NewArr[0]
       setInProgresItemList([...InProgresItemList, newItem])
       setReadyItemList(ReadyItemList)
+      localStorage.setItem('ReadyItemList', JSON.stringify(ReadyItemList))
       setOpen(false)
       setAddButtonActive(true)
     }
@@ -113,8 +136,10 @@ function HomePage(){
       setFinishedItemList([...FinishedItemList, newItem])
       setInProgresItemList(InProgresItemList)
       setOpen(false)
+      localStorage.setItem('InProgresItemList', JSON.stringify(InProgresItemList))
       setAddButtonActive(true)
-      setFinishedTaskCount(Number(FinishedItemList.length))
+      setFinishedTaskCount(Number(FinishedTaskCount + 1))
+      localStorage.setItem('FinishedTaskCount', FinishedTaskCount)
     }
   
     function hendlerBacklogClick (){
@@ -124,11 +149,9 @@ function HomePage(){
   }
   
   function hendlerReadyClick (e){
-    console.log(e)
     if(BacklogItemList.length === 0){
-      e.target.disabled = true
+      console.log('disabled')
     }else{
-      e.target.disabled = false
       setOpen(true)
       setAddButtonActive(false)
     }
@@ -138,8 +161,7 @@ function HomePage(){
   function hendlerInProgresClick (e){
     console.log(e)
     if(ReadyItemList.length === 0){
-      e.target.disabled = true
-      setIsEmpty(true)
+      console.log('disabled')
     }else{
       setOpen(true)
       setAddButtonActive(false)
@@ -150,9 +172,10 @@ function HomePage(){
   
   function hendlerFinishedClick (e){
     if(InProgresItemList.length === 0){
-      e.target.disabled = true
-      setIsEmpty(true)
+      console.log('disabled')
+      // setIsEmpty(true)
     }else{
+      e.target.disabled = false
       setOpen(true)
       setAddButtonActive(false)
       setIsEmpty(false)
@@ -168,7 +191,9 @@ function HomePage(){
           itemState: 'BackLog',
           description: 'This task has no description'
          }])
-         setActiveTaskCount(Number(BacklogItemList.length))
+         setActiveTaskCount(Number(ActiveTaskCount + 1))
+         localStorage.setItem('ActiveTaskCount', ActiveTaskCount)
+         setButtonDisabled(false)
       }else{}
       setInputValue('')
       setAddButtonActive(true)

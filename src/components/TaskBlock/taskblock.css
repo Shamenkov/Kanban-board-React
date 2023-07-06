@@ -44,7 +44,7 @@
     margin-left: 10px;
 }
 
-.AddTaskButton:disabled{
+.AddTaskButton.disabled{
     background-color:#DEDEDE;
     cursor: no-drop;
 }

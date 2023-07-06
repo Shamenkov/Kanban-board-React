@@ -11,7 +11,7 @@ const arrowDown = <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xm
 </svg>
 
 
-function TaskBlock2 ({title, itemList, children, AddButtonActive, hendlerClick, open, inputActive, hendlerChange, value, SubmitButtonActive, hendlerSaveValueClick, selectList, selectClick, buttonDisabled, isEmpty}) {
+function TaskBlock2 ({title, itemList, children, AddButtonActive, hendlerClick, open, inputActive, hendlerChange, value, SubmitButtonActive, hendlerSaveValueClick, selectList, selectClick, buttonDisabled, isEmpty, }) {
     return(
         <div className="taskBlock">
             <h2 className="taskBlock_title">{title}</h2>
